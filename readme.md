@@ -14,7 +14,7 @@ var remote = new RPCWebSocket({
   deserialize: JSON.parse
 })
 
-remote.onopen = () => {
+remote.onopen = function () {
   console.log('socket open')
 }
 
