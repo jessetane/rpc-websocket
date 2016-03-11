@@ -6,9 +6,9 @@ Personal flavor of reconnect and keepalive logic.
 
 ## How
 ``` javascript
-import RPCWebSocket from 'rpc-websocket'
+import WebSocketRPC from 'websocket-rpc'
 
-var remote = new RPCWebSocket({
+var remote = new WebSocketRPC({
   url: 'wss://www.example.com',
   serialize: JSON.stringify,
   deserialize: JSON.parse

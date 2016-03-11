@@ -1,12 +1,12 @@
-module.exports = RPCWebSocket
+module.exports = WebSocketRPC
 
 var RPCEngine = require('rpc-engine')
 var inherits = require('inherits')
 var ws = require('ws') || window.WebSocket
 
-inherits(RPCWebSocket, RPCEngine)
+inherits(WebSocketRPC, RPCEngine)
 
-function RPCWebSocket (opts) {
+function WebSocketRPC (opts) {
   RPCEngine.call(this)
   opts = opts || {}
   for (var key in opts) {
@@ -19,14 +19,14 @@ function RPCWebSocket (opts) {
   this.connect = this.connect.bind(this)
 }
 
-RPCWebSocket.prototype.connect = function () {
+WebSocketRPC.prototype.connect = function () {
   this.socket = new WebSocket(this.url)
   this.socket.addEventListener('close', this._onclose)
   this.socket.addEventListener('error', this._onclose)
   this.socket.addEventListener('open', this._onopen)
 }
 
-RPCWebSocket.prototype._onopen = function () {
+WebSocketRPC.prototype._onopen = function () {
   clearInterval(this._reconnectInterval)
   this._pingInterval = setInterval(() => {
     this.call('ping')
@@ -39,7 +39,7 @@ RPCWebSocket.prototype._onopen = function () {
   }
 }
 
-RPCWebSocket.prototype._onclose = function () {
+WebSocketRPC.prototype._onclose = function () {
   this.socket.removeEventListener('close', this._onclose)
   this.socket.removeEventListener('error', this._onclose)
   clearInterval(this._pingInterval)
@@ -52,6 +52,6 @@ RPCWebSocket.prototype._onclose = function () {
   }
 }
 
-RPCWebSocket.prototype.send = function (message) {
+WebSocketRPC.prototype.send = function (message) {
   this.socket.send(message)
 }
