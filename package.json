@@ -1,6 +1,6 @@
 {
   "name": "rpc-websocket",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "rpc-engine with a websocket transport",
   "dependencies": {
     "rpc-engine": "^2.0.1",
