@@ -16,7 +16,7 @@ var remote = new RPCWebSocket({
 
 remote.onopen = () => {
   console.log('socket open')
-})
+}
 
 remote.connect()
 ```
