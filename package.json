@@ -1,0 +1,13 @@
+{
+  "name": "rpc-websocket",
+  "version": "0.0.0",
+  "description": "rpc-engine with a websocket transport",
+  "dependencies": {
+    "ws": "^1.0.1"
+  },
+  "browser": {
+    "ws": false
+  },
+  "author": "jesse.tane@gmail.com",
+  "license": "Public domain"
+}
