@@ -1,4 +1,4 @@
-# rpc-websocket
+# websocket-rpc
 [rpc-engine](https://github.com/jessetane/rpc-engine) with a websocket transport.
 
 ## Why
