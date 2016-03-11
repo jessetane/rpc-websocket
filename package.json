@@ -7,7 +7,7 @@
     "ws": "^1.0.1"
   },
   "browser": {
-    "ws": false
+    "ws": "./ws-browser.js"
   },
   "author": "jesse.tane@gmail.com",
   "license": "Public domain"
