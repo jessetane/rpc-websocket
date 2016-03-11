@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "rpc-engine with a websocket transport",
   "dependencies": {
+    "rpc-engine": "^2.0.1",
     "ws": "^1.0.1"
   },
   "browser": {
