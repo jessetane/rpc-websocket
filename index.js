@@ -28,12 +28,12 @@ WebSocketRPC.prototype.connect = function () {
 
 WebSocketRPC.prototype._onopen = function () {
   clearInterval(this._reconnectInterval)
-  this._pingInterval = setInterval(() => {
+  this._pingInterval = setInterval(function () {
     this.call('ping')
-  }, this.pingInterval)
-  this.socket.addEventListener('message', evt => {
+  }.bind(this), this.pingInterval)
+  this.socket.addEventListener('message', function (evt) {
     this.onmessage(evt.data)
-  })
+  }.bind(this))
   if (this.onopen) {
     this.onopen()
   }
