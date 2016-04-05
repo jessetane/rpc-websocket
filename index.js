@@ -1,8 +1,10 @@
 module.exports = WebSocketRPC
 
+var isBrowser = typeof window !== 'undefined'
+
 var RPCEngine = require('rpc-engine')
 var inherits = require('inherits')
-var ws = require('ws') || window.WebSocket
+var WebSocket = isBrowser ? window.WebSocket : require('ws')
 
 inherits(WebSocketRPC, RPCEngine)
 
@@ -21,9 +23,9 @@ function WebSocketRPC (opts) {
 
 WebSocketRPC.prototype.connect = function () {
   this.socket = new WebSocket(this.url)
-  this.socket.addEventListener('close', this._onclose)
-  this.socket.addEventListener('error', this._onclose)
-  this.socket.addEventListener('open', this._onopen)
+  this.socket.onclose = this._onclose
+  this.socket.onerror = this._onclose
+  this.socket.onopen = this._onopen
 }
 
 WebSocketRPC.prototype._onopen = function () {
@@ -31,17 +33,17 @@ WebSocketRPC.prototype._onopen = function () {
   this._pingInterval = setInterval(function () {
     this.call('ping')
   }.bind(this), this.pingInterval)
-  this.socket.addEventListener('message', function (evt) {
+  this.socket.onmessage = function (evt) {
     this.onmessage(evt.data)
-  }.bind(this))
+  }.bind(this)
   if (this.onopen) {
     this.onopen()
   }
 }
 
 WebSocketRPC.prototype._onclose = function () {
-  this.socket.removeEventListener('close', this._onclose)
-  this.socket.removeEventListener('error', this._onclose)
+  delete this.socket.onclose
+  delete this.socket.onerror
   clearInterval(this._pingInterval)
   this._reconnectInterval = setTimeout(
     this.connect,
