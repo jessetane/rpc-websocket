@@ -46,8 +46,7 @@ WebSocketRPC.prototype._onopen = function () {
 }
 
 WebSocketRPC.prototype._onclose = function () {
-  delete this.socket.onclose
-  delete this.socket.onerror
+  this.socket.onclose = this.socket.onerror = null
   clearInterval(this._pingInterval)
   this._reconnectInterval = setTimeout(
     this.connect,
