@@ -28,6 +28,10 @@ WebSocketRPC.prototype.connect = function () {
   this.socket.onopen = this._onopen
 }
 
+WebSocketRPC.prototype.disconnect = function () {
+  this.socket.close()
+}
+
 WebSocketRPC.prototype._onopen = function () {
   clearInterval(this._reconnectInterval)
   this._pingInterval = setInterval(function () {
