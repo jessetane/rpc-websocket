@@ -22,6 +22,10 @@ function WebSocketRPC (opts) {
 }
 
 WebSocketRPC.prototype.connect = function () {
+  if (!this.url && isBrowser) {
+    var protocol = location.protocol === 'https:' ? 'wss' : 'ws'
+    this.url = protocol + '://' + location.host
+  }
   this.socket = new WebSocket(this.url)
   this.socket.onclose = this._onclose
   this.socket.onerror = this._onclose
