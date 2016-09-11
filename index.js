@@ -21,6 +21,12 @@ function WebSocketRPC (opts) {
   this.connect = this.connect.bind(this)
 }
 
+Object.defineProperty(WebSocketRPC.prototype, 'connected', {
+  get: function () {
+    return this._pingInterval !== undefined
+  }
+})
+
 WebSocketRPC.prototype.connect = function () {
   if (!this.url && isBrowser) {
     var protocol = location.protocol === 'https:' ? 'wss' : 'ws'
@@ -52,6 +58,7 @@ WebSocketRPC.prototype._onopen = function () {
 WebSocketRPC.prototype._onclose = function () {
   this.socket.onclose = this.socket.onerror = null
   clearInterval(this._pingInterval)
+  delete this._pingInterval
   this._reconnectInterval = setTimeout(
     this.connect,
     this.reconnectInterval
