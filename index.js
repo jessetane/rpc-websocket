@@ -55,7 +55,7 @@ WebSocketRPC.prototype._onopen = function () {
   }
 }
 
-WebSocketRPC.prototype._onclose = function () {
+WebSocketRPC.prototype._onclose = function (err) {
   this.socket.onclose = this.socket.onerror = null
   clearInterval(this._pingInterval)
   delete this._pingInterval
@@ -63,6 +63,9 @@ WebSocketRPC.prototype._onclose = function () {
     this.connect,
     this.reconnectInterval
   )
+  if (this.onerror) {
+    this.onerror(err)
+  }
   if (this.onclose) {
     this.onclose()
   }
