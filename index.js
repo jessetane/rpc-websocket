@@ -40,6 +40,7 @@ WebSocketRPC.prototype.connect = function () {
 
 WebSocketRPC.prototype.disconnect = function () {
   this.socket.close()
+  clearTimeout(this._reconnectInterval)
 }
 
 WebSocketRPC.prototype._onopen = function () {
