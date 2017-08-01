@@ -5,7 +5,7 @@
   "dependencies": {
     "inherits": "^2.0.1",
     "rpc-engine": "^3.1.0",
-    "ws": "^1.0.1"
+    "uws": "^8.14.0"
   },
   "browser": {
     "ws": "./ws-browser.js"

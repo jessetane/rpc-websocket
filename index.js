@@ -4,7 +4,7 @@ var isBrowser = typeof window !== 'undefined'
 
 var RPCEngine = require('rpc-engine')
 var inherits = require('inherits')
-var WebSocket = isBrowser ? window.WebSocket : require('ws')
+var WebSocket = isBrowser ? window.WebSocket : require('uws')
 
 inherits(WebSocketRPC, RPCEngine)
 
