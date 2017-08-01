@@ -6,7 +6,7 @@ Personal flavor of reconnect and keepalive logic.
 
 ## How
 ``` javascript
-import WebSocketRPC from 'websocket-rpc'
+var WebSocketRPC = require('websocket-rpc')
 
 var remote = new WebSocketRPC({
   url: 'wss://www.example.com',
@@ -14,12 +14,12 @@ var remote = new WebSocketRPC({
   deserialize: JSON.parse
 })
 
-remote.onopen = function () {
+remote.on('open, function () {
   console.log('socket open')
-}
+})
 
 remote.connect()
 ```
 
 ## License
-Public domain
+MIT
