@@ -62,7 +62,9 @@ WebSocketRPC.prototype._onclose = function (err) {
     this.connect,
     this.reconnectInterval
   )
-  this.emit('error', err)
+  if (err) {
+    this.emit('error', err)
+  }
   this.emit('close')
 }
 
