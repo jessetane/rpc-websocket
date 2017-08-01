@@ -51,9 +51,7 @@ WebSocketRPC.prototype._onopen = function () {
   this.socket.onmessage = function (evt) {
     this.onmessage(evt.data)
   }.bind(this)
-  if (this.onopen) {
-    this.onopen()
-  }
+  this.emit('open')
 }
 
 WebSocketRPC.prototype._onclose = function (err) {
@@ -64,12 +62,8 @@ WebSocketRPC.prototype._onclose = function (err) {
     this.connect,
     this.reconnectInterval
   )
-  if (this.onerror) {
-    this.onerror(err)
-  }
-  if (this.onclose) {
-    this.onclose()
-  }
+  this.emit('error', err)
+  this.emit('close')
 }
 
 WebSocketRPC.prototype.send = function (message) {
