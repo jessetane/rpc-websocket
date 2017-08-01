@@ -11,5 +11,5 @@
     "ws": "./ws-browser.js"
   },
   "author": "jesse.tane@gmail.com",
-  "license": "Public domain"
+  "license": "MIT"
 }
