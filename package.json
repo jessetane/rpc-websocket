@@ -4,7 +4,7 @@
   "description": "rpc-engine with a websocket transport",
   "dependencies": {
     "inherits": "^2.0.1",
-    "rpc-engine": "^4.1.1",
+    "rpc-engine": "^4.1.2",
     "uws": "^8.14.0"
   },
   "browser": {
