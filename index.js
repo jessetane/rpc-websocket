@@ -49,12 +49,13 @@ WebSocketRPC.prototype._onopen = function () {
     this.call('ping')
   }.bind(this), this.pingInterval)
   this.socket.onmessage = function (evt) {
-    this.onmessage(evt.data)
+    this.receive(evt.data)
   }.bind(this)
   this.emit('open')
 }
 
 WebSocketRPC.prototype._onclose = function (err) {
+  this.close()
   this.socket.onclose = this.socket.onerror = null
   clearInterval(this._pingInterval)
   delete this._pingInterval
