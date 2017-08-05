@@ -1,10 +1,8 @@
 module.exports = WebSocketRPC
 
-var isBrowser = typeof window !== 'undefined'
-
 var RPCEngine = require('rpc-engine')
 var inherits = require('inherits')
-var WebSocket = isBrowser ? window.WebSocket : require('uws')
+var WebSocket = require('./websocket')
 
 inherits(WebSocketRPC, RPCEngine)
 
